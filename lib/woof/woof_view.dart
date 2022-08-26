@@ -32,12 +32,17 @@ class WoofView extends StatelessWidget {
           );
         }
         return Scaffold(
+          // Only show if readyState is ready
           floatingActionButton: state.readyState == WoofReadyState.ready
               ? FloatingActionButton(
                   onPressed: () async {
+                    // Triggers save and navigation to posts view
                     context.read<WoofBloc>().add(SaveWoofEVent());
-                    await Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PostsView()));
+                    await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const PostsView(),
+                      ),
+                    );
                   },
                   child: const Icon(Icons.save),
                 )
@@ -45,8 +50,8 @@ class WoofView extends StatelessWidget {
           body: Center(
             child: GestureDetector(
                 onTap: () {
+                  // Loads a random woof again
                   context.read<WoofBloc>().add(WoofUpdatedEvent(loading: true));
-
                   context
                       .read<WoofBloc>()
                       .add(NewWoofEvent(repo: context.read<WoofRepo>()));

@@ -18,6 +18,7 @@ class PostsView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Posts'),
         actions: [
+          // Shows the list of saved posts
           IconButton(
               onPressed: () {
                 Navigator.of(context).push(

@@ -7,6 +7,7 @@ class PostsBloc extends Bloc<PostEvent, PostsState> {
     on<PostLoad>(_fetchPosts);
   }
 
+  /// Fetches the posts from the repository and updates the state
   void _fetchPosts(PostLoad event, Emitter<PostsState> emit) async {
     await event.repo.fetchPosts().then((value) {
       emit(PostsState(posts: value));
