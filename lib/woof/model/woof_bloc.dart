@@ -42,7 +42,6 @@ class WoofBloc extends Bloc<WoofEvent, WoofState> {
 
   void _saveWoof(SaveWoofEVent event, Emitter<WoofState> emit) async {
     saved!.add(state.content!.url);
-    print(saved);
     await _db?.put('saved', saved);
   }
 }
