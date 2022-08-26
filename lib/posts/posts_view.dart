@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pet_perfect/components/error.dart';
 import 'package:pet_perfect/posts/components/saved_list.dart';
@@ -18,17 +16,17 @@ class PostsView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Posts'),
+        title: const Text('Posts'),
         actions: [
           IconButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => SavedList(),
+                    builder: (context) => const SavedList(),
                   ),
                 );
               },
-              icon: Icon(Icons.save_alt))
+              icon: const Icon(Icons.save_alt))
         ],
         centerTitle: true,
         backgroundColor: Theme.of(context).canvasColor,

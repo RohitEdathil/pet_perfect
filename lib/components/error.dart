@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ErrorMessage extends StatelessWidget {
   const ErrorMessage({Key? key}) : super(key: key);
@@ -10,7 +8,7 @@ class ErrorMessage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Icon(
+        const Icon(
           Icons.error,
           color: Colors.red,
           size: 40,

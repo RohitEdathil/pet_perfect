@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pet_perfect/woof/model/woof_bloc.dart';
 import 'package:pet_perfect/woof/model/woof_events.dart';
-import 'package:pet_perfect/woof/model/woof_state.dart';
 
 class SavedList extends StatefulWidget {
   const SavedList({Key? key}) : super(key: key);
@@ -20,7 +17,7 @@ class _SavedListState extends State<SavedList> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Saved'),
+        title: const Text('Saved'),
         centerTitle: true,
         backgroundColor: Theme.of(context).canvasColor,
         foregroundColor: Colors.black,

@@ -17,12 +17,12 @@ class WoofBloc extends Bloc<WoofEvent, WoofState> {
   void _fetchNewWoof(NewWoofEvent event, Emitter<WoofState> emit) async {
     _db ??= await Hive.openBox('woof');
     if (saved == null) {
-      final _saved = await _db!.get('saved');
-      if (_saved == null) {
+      final savedTemp = await _db!.get('saved');
+      if (savedTemp == null) {
         saved = [];
         await _db!.put("saved", <String>[]);
       } else {
-        saved = _saved;
+        saved = savedTemp;
       }
     }
 
