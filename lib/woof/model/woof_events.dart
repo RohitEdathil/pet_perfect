@@ -13,3 +13,8 @@ class WoofUpdatedEvent extends WoofEvent {
 }
 
 class SaveWoofEVent extends WoofEvent {}
+
+class DeleteWoofEvent extends WoofEvent {
+  String url;
+  DeleteWoofEvent({required this.url});
+}

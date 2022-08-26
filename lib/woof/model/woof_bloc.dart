@@ -11,6 +11,7 @@ class WoofBloc extends Bloc<WoofEvent, WoofState> {
     on<NewWoofEvent>(_fetchNewWoof);
     on<WoofUpdatedEvent>(_updateWoof);
     on<SaveWoofEVent>(_saveWoof);
+    on<DeleteWoofEvent>(_deleteWoof);
   }
 
   void _fetchNewWoof(NewWoofEvent event, Emitter<WoofState> emit) async {
@@ -38,6 +39,11 @@ class WoofBloc extends Bloc<WoofEvent, WoofState> {
       return;
     }
     emit(state.copyWith(WoofReadyState.ready));
+  }
+
+  void _deleteWoof(DeleteWoofEvent event, Emitter<WoofState> emit) async {
+    saved!.remove(event.url);
+    await _db?.put('saved', saved);
   }
 
   void _saveWoof(SaveWoofEVent event, Emitter<WoofState> emit) async {
