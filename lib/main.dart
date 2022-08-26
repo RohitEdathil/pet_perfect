@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pet_perfect/posts/model/post_bloc.dart';
+import 'package:pet_perfect/posts/model/posts_repo.dart';
 
 import 'package:pet_perfect/woof/model/woof_bloc.dart';
 import 'package:pet_perfect/woof/model/woof_repo.dart';
@@ -16,19 +18,21 @@ class PetPerfectApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MultiBlocProvider(
+    return MultiBlocProvider(
+      providers: [
+        // Providers go here
+        BlocProvider<WoofBloc>(create: (context) => WoofBloc()),
+        BlocProvider<PostsBloc>(create: (context) => PostsBloc()),
+      ],
+      child: MultiRepositoryProvider(
         providers: [
-          // Providers go here
-          BlocProvider<WoofBloc>(create: (context) => WoofBloc()),
+          // Repositories go here
+          RepositoryProvider<WoofRepo>(create: (context) => WoofRepo()),
+          RepositoryProvider<PostsRepo>(create: (context) => PostsRepo()),
         ],
-        child: MultiRepositoryProvider(
-          providers: [
-            // Repositories go here
-            RepositoryProvider<WoofRepo>(create: (context) => WoofRepo()),
-          ],
-          child: const WoofView(),
+        child: const MaterialApp(
+          home: WoofView(),
+          debugShowCheckedModeBanner: false,
         ),
       ),
     );

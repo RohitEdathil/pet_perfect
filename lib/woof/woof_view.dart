@@ -19,7 +19,7 @@ class WoofView extends StatelessWidget {
     return BlocBuilder<WoofBloc, WoofState>(
       builder: (context, state) {
         if (state.readyState == WoofReadyState.error) {
-          return Scaffold(
+          return const Scaffold(
             body: ErrorMessage(),
           );
         }
