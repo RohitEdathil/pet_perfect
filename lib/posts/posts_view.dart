@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pet_perfect/components/error.dart';
 import 'package:pet_perfect/posts/model/post_bloc.dart';
 import 'package:pet_perfect/posts/model/post_events.dart';
 import 'package:pet_perfect/posts/model/post_state.dart';
@@ -17,23 +18,39 @@ class PostsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Posts'),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).canvasColor,
+        foregroundColor: Colors.black,
+        elevation: 0,
       ),
       body: BlocBuilder<PostsBloc, PostsState>(
         builder: (context, state) {
+          print(state.error);
+          if (state.error) {
+            return const ErrorMessage();
+          }
           if (state.posts.isEmpty) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
-          return ListView(
-            children: [
-              for (final post in state.posts)
-                ListTile(
-                  title: Text(post.title),
-                  subtitle: Text(post.body),
-                )
-            ],
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              children: [
+                for (final post in state.posts)
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        title: Text(post.title),
+                        subtitle: Text(post.body),
+                      ),
+                    ),
+                  )
+              ],
+            ),
           );
         },
       ),

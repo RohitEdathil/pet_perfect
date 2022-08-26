@@ -8,6 +8,10 @@ class PostsBloc extends Bloc<PostEvent, PostsState> {
   }
 
   void _fetchPosts(PostLoad event, Emitter<PostsState> emit) async {
-    emit(PostsState(posts: await event.repo.fetchPosts()));
+    await event.repo.fetchPosts().then((value) {
+      emit(PostsState(posts: value));
+    }).onError((error, stackTrace) {
+      emit(PostsState(error: true, posts: []));
+    });
   }
 }

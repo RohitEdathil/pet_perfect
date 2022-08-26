@@ -22,7 +22,7 @@ class ErrorMessage extends StatelessWidget {
         ),
         const SizedBox(height: 16, width: double.infinity),
         Text(
-          'Something went wrong',
+          'Please check your internet connection.',
           style: Theme.of(context).textTheme.bodyText2,
         ),
       ],
